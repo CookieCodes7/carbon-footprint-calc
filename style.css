@@ -304,6 +304,60 @@ body {
     color: var(--color-text);
 }
 
+:root{
+  --bg: #000000;
+  --surface: #121212;
+  --text: #ffffff;
+  --primary: #8b5cf6;
+}
+
+/* light theme overrides */
+body.light {
+  --bg: #ffffff;
+  --surface: #f7f7fb;
+  --text: #0b0b0b;
+  --primary: #6d28d9;
+}
+
+/* dark theme (default) */
+body, body.dark {
+  --bg: #000000;
+  --surface: #121212;
+  --text: #ffffff;
+  --primary: #8b5cf6;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Theme toggle button - show only on landing page (front page) */
+.theme-toggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 8px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+}
+
+/* only show on the landing/front page */
+body.landing .theme-toggle { display: inline-flex; align-items: center; justify-content: center; }
+
+/* small focus style */
+.theme-toggle:focus { outline: 2px solid rgba(139,92,246,0.25); outline-offset: 2px; }
+
 .with-bg {
   background-image: url('images/site-background.png'); /* update path */
   background-size: cover;

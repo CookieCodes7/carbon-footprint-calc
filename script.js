@@ -858,6 +858,31 @@ function showOtherPage() {
   // render other page...
 }
 
+(function(){
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+
+  const KEY = 'site-theme';
+  function applyTheme(theme){
+    document.body.classList.toggle('dark', theme === 'dark');
+    document.body.classList.toggle('light', theme === 'light');
+    toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+    toggle.setAttribute('aria-pressed', String(theme === 'dark'));
+  }
+
+  // initialize from storage (default to dark)
+  const saved = localStorage.getItem(KEY);
+  const initial = saved === 'light' ? 'light' : 'dark';
+  applyTheme(initial);
+
+  toggle.addEventListener('click', () => {
+    const current = document.body.classList.contains('dark') ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem(KEY, next);
+  });
+})();
+
 
 
 // Main Render Function
